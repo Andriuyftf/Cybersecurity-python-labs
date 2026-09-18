@@ -1,6 +1,7 @@
+import os
 import random
 import sys
-import os
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__),'../../')))
 from shared.student import STUDENT_NAME, GROUP_NAME, VARIANT_NUMBER
 
@@ -22,7 +23,6 @@ def analyze_pas():
     passwords.extend(randomdupl)
     
     print(f"{'Пароль':<25} | {'Статус'}")
-    print("-" * 50)
 
     for pas in passwords:
         forbiden = pas in forbidden_passwords or len(pas) < criteria["min_length"]

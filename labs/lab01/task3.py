@@ -1,9 +1,10 @@
+import csv
 import hashlib
+import json
 import os
 import sys
-import csv
 from datetime import datetime
-import json
+
 
 class ValidationError(Exception):
     pass
@@ -12,6 +13,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../'
 from shared.student import VARIANT_NUMBER
 
 PERSONAL_SALT = f"{VARIANT_NUMBER:05d}"
+
 
 def generate_hash(password: str, salt: str = "00000") -> str:
     if not password or not salt:
