@@ -40,9 +40,8 @@ security_levels = ("Open Source", "Internal Research", "Proprietary", "TradeSecr
 blocked_users = {"training_bot", "model_theft", "data_poisoning_acc"}
 
 def task2():
-    print("ресурси системи:")
     for res_name, res_level in resources:
-        print(f"- {res_name}: {security_levels[res_level - 1]}")
+        print(f" {res_name}: {security_levels[res_level - 1]}")
     
     print("\nрезультати перевірки доступу:")
     user_test = list(users.keys())
