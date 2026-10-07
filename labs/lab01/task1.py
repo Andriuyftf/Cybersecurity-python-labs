@@ -3,7 +3,7 @@ import random
 import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__),'../../')))
-from shared.student import STUDENT_NAME, GROUP_NAME, VARIANT_NUMBER
+from shared.student import GROUP_NAME, STUDENT_NAME, VARIANT_NUMBER
 
 passwords = ["Compli4nc3@Check", "weak", "Risk@Ass3ssment", "guest",
 "Vulner4bility@Scan", "temp", "P3netration@Test", "demo", "S3curity@Audit",
