@@ -1,143 +1,77 @@
 import argparse
 from datetime import timedelta
-from secrets import token_urlsafe
 
-from .task1 import (
-    SESSION_TIMEOUT_SEC,
-    Admin,
-    AuditLog,
-    User,
-    UserAccount,
-)
+from . import task2
+from .task1 import SESSION_TIMEOUT_SEC, Admin, AuditLog, User, UserAccount
 
 
-def demo() -> None:
-    user = User(
-        "andrii",
-        "andrii_13@example.com",
-        "student",
-    )
-
-    password = token_urlsafe(24)
-    user.set_password(password)
-
+def demo():
+    user = User("andrii", "andrii@example.test", "user")
+    user.set_password("Lab13Password")
     audit = AuditLog()
-    account = UserAccount(user=user, audit_log=audit)
+    account = UserAccount(user, audit_log=audit)
 
-    # Невдалий вхід.
-    print(
-        "Невдалий вхід:",
-        account.login(
-            user.username,
-            password + "!",
-            "192.168.1.10",
-        ),
-    )
-    print(
-        "Сесія після невдалого входу:",
-        account["session"],
-    )
+    print("Користувач")
+    print(account["user"])
 
-    # Успішний вхід.
-    print(
-        "Успішний вхід:",
-        account.login(
-            user.username,
-            password,
-            "192.168.1.10",
-        ),
-    )
-    print("Автентифіковано:", account.is_authenticated())
+    print("\nПеревірка входу")
+    print("Невдалий вхід:", account.login("andrii", "wrong", "192.0.2.10"))
+    print("Успішний вхід:", account.login("andrii", "Lab13Password!", "192.0.2.10"))
+    print("Користувач авторизований:", account.is_authenticated())
 
-    # Зміна email із валідацією.
-    user.email = "andrii_new@example.org"
+    print("\nЗміна email")
+    user.email = "andrii_new@example.test"
     print("Новий email:", user.email)
 
     try:
         user.email = "incorrect-email"
     except ValueError as error:
-        print("Помилка email:", error)
+        print("Помилка:", error)
 
-    # Права адміністратора.
-    admin = Admin(
-        "administrator",
-        "administrator@example.com",
-        permissions={"read_logs"},
-    )
+    print("Email після невдалої зміни:", user.email)
 
+    print("\nПрава адміністратора")
+    admin = Admin("admin", "admin@example.test")
+    admin.grant_permission("read_logs")
     admin.grant_permission("manage_users")
-    print(
-        "Право manage_users:",
-        admin.has_permission("manage_users"),
-    )
-
-    admin.revoke_permission("read_logs")
-    print(
-        "Право read_logs:",
-        admin.has_permission("read_logs"),
-    )
     print(admin)
 
-    # Доступ через спеціальні методи.
-    print("Користувач через ключ:", account["user"])
-    account["audit_log"] = audit
+    print("Право read_logs:", admin.has_permission("read_logs"))
+    admin.revoke_permission("read_logs")
+    print("Право read_logs після відкликання:", admin.has_permission("read_logs"))
+    print(admin)
 
-    try:
-        account["session"] = "not a session"
-    except TypeError as error:
-        print("Помилка типу:", error)
+    print("\nЗавершення сеансу за таймаутом")
+    account["session"].last_activity -= timedelta(seconds=SESSION_TIMEOUT_SEC + 1)
+    print("Авторизація після таймауту:", account.is_authenticated())
 
-    try:
-        print(account["password_hash"])
-    except KeyError as error:
-        print("Невідомий ключ:", error)
-
-    # Імітація таймауту без очікування 15 хвилин.
-    if account.session is not None:
-        account.session.last_activity -= timedelta(
-            seconds=SESSION_TIMEOUT_SEC + 1,
-        )
-
-    print("Після таймауту:", account.is_authenticated())
-    print("Сесія після таймауту:", account["session"])
-
-    # Повторний вхід і явний вихід із системи.
-    print(
-        "Повторний вхід:",
-        account.login(
-            user.username,
-            password,
-            "192.168.1.10",
-        ),
-    )
-    del password
-
+    print("\nВихід із системи")
+    print("Повторний вхід:", account.login("andrii", "Lab13Password!", "192.0.2.10"))
     account.logout()
-    print("Після logout:", account.is_authenticated())
+    print("Авторизація після виходу:", account.is_authenticated())
 
-    print("Журнал аудиту:")
+    print("\nЖурнал аудиту")
     audit.show_all()
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Лабораторна робота №2",
-    )
+def main():
+    parser = argparse.ArgumentParser(description="Лабораторна робота 2")
+    commands = parser.add_subparsers(dest="command", required=True)
 
-    subparsers = parser.add_subparsers(
-        dest="command",
-        required=True,
-    )
-    subparsers.add_parser(
-        "demo",
-        help="Демонстрація класів",
-    )
+    commands.add_parser("demo")
+    commands.add_parser("analyze", add_help=False)
 
-    args = parser.parse_args()
+    args, remaining = parser.parse_known_args()
 
     if args.command == "demo":
+        if remaining:
+            parser.error("Команда demo не приймає додаткових аргументів")
         demo()
+        return 0
+
+    if args.command == "analyze":
+        return task2.main(remaining)
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

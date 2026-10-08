@@ -1,0 +1,119 @@
+{
+    "scan_dir": "labs/lab02/data/data_v13/scan",
+    "patterns": "all",
+    "scanned_files": 4,
+    "skipped_files": 0,
+    "counts": {
+        "emails": 4,
+        "cards": 3,
+        "phones": 4,
+        "ips": 4
+    },
+    "findings": [
+        {
+            "file": "labs/lab02/data/data_v13/scan/exports/export.json",
+            "line": 4,
+            "type": "emails",
+            "value": "carol@example.test",
+            "": "c****l@example.test"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/exports/export.json",
+            "line": 5,
+            "type": "ips",
+            "value": "203.0.113.80",
+            "": "203.0.*.*"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/exports/export.json",
+            "line": 8,
+            "type": "emails",
+            "value": "dave@example.test",
+            "": "d****e@example.test"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/exports/export.json",
+            "line": 9,
+            "type": "phones",
+            "value": "+44 20 7946 0958",
+            "": "+442*******58"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/exports/export.json",
+            "line": 12,
+            "type": "cards",
+            "value": "4000-0000-0000-0002",
+            "": "4000-****-****-0002"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/logs/app.log",
+            "line": 1,
+            "type": "emails",
+            "value": "alice@example.test",
+            "": "a****e@example.test"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/logs/app.log",
+            "line": 1,
+            "type": "ips",
+            "value": "192.0.2.10",
+            "": "192.0.*.*"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/logs/app.log",
+            "line": 2,
+            "type": "phones",
+            "value": "+380 67 123 45 67",
+            "": "+380*******67"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/logs/app.log",
+            "line": 3,
+            "type": "cards",
+            "value": "4111-1111-1111-1111",
+            "": "4111-****-****-1111"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/logs/app.log",
+            "line": 4,
+            "type": "ips",
+            "value": "198.51.100.44",
+            "": "198.51.*.*"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/notes/users.txt",
+            "line": 2,
+            "type": "emails",
+            "value": "bob.smith@example.test",
+            "": "b****h@example.test"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/notes/users.txt",
+            "line": 3,
+            "type": "phones",
+            "value": "+1-202-555-0147",
+            "": "+120******47"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/notes/users.txt",
+            "line": 4,
+            "type": "phones",
+            "value": "0501234567",
+            "": "050*****67"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/notes/users.txt",
+            "line": 5,
+            "type": "ips",
+            "value": "10.20.30.40",
+            "": "10.20.*.*"
+        },
+        {
+            "file": "labs/lab02/data/data_v13/scan/notes/users.txt",
+            "line": 6,
+            "type": "cards",
+            "value": "5555 5555 5555 4444",
+            "": "5555-****-****-4444"
+        }
+    ]
+}
