@@ -159,8 +159,7 @@ def main(argv=None):
         log.warning("Unmasked PII found in plaintext logs!")
 
     for item in findings:
-        item["" \
-        ""] = mask(item["type"], item["value"])
+        item[""] = mask(item["type"], item["value"])
 
     report = {
         "scan_dir": str(args.scan_dir),

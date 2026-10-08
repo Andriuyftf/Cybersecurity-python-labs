@@ -69,10 +69,7 @@ class User:
 
     @email.setter
     def email(self, value: str) -> None:
-        if (
-            not isinstance(value, str)
-            or re.fullmatch(EMAIL_PATTERN, value) is None
-        ):
+        if not isinstance(value, str) or re.fullmatch(EMAIL_PATTERN, value) is None:
             raise ValueError("Некоректний формат email")
 
         self._email = value
@@ -155,10 +152,7 @@ class AuditLog:
 
     def show_all(self) -> None:
         for record in self.records:
-            print(
-                f"{record.time.isoformat()} | "
-                f"{record.username} | {record.action}"
-            )
+            print(f"{record.time.isoformat()} | {record.username} | {record.action}")
 
 
 class UserAccount:
@@ -170,9 +164,7 @@ class UserAccount:
     ) -> None:
         self["user"] = user
         self["session"] = session
-        self["audit_log"] = (
-            AuditLog() if audit_log is None else audit_log
-        )
+        self["audit_log"] = AuditLog() if audit_log is None else audit_log
 
     def login(self, username: str, password: str, ip: str) -> bool:
         if (
@@ -192,10 +184,7 @@ class UserAccount:
         if self.session is None:
             return False
 
-        if (
-            not self.user.active
-            or not self.session.is_active(SESSION_TIMEOUT_SEC)
-        ):
+        if not self.user.active or not self.session.is_active(SESSION_TIMEOUT_SEC):
             self.session = None
             return False
 

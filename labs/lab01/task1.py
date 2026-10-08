@@ -2,26 +2,36 @@ import os
 import random
 import sys
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__),'../../')))
-from shared.student import GROUP_NAME, STUDENT_NAME, VARIANT_NUMBER
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 
-passwords = ["Compli4nc3@Check", "weak", "Risk@Ass3ssment", "guest",
-"Vulner4bility@Scan", "temp", "P3netration@Test", "demo", "S3curity@Audit",
-"trial"]
+passwords = [
+    "Compli4nc3@Check",
+    "weak",
+    "Risk@Ass3ssment",
+    "guest",
+    "Vulner4bility@Scan",
+    "temp",
+    "P3netration@Test",
+    "demo",
+    "S3curity@Audit",
+    "trial",
+]
 
 criteria = {
-"min_length": 8,
-"require_digits": True,
-"require_upper": True,
-"require_special": True}
+    "min_length": 8,
+    "require_digits": True,
+    "require_upper": True,
+    "require_special": True,
+}
 
 forbidden_passwords = {"weak", "guest", "temp", "demo", "trial", "password"}
+
 
 def analyze_pas():
 
     randomdupl = random.choices(passwords, k=3)
     passwords.extend(randomdupl)
-    
+
     print(f"{'Пароль':<25} | {'Статус'}")
 
     for pas in passwords:
@@ -48,6 +58,7 @@ def analyze_pas():
             status = "Слабкий"
 
         print(f"{pas:<25} | {status}")
+
 
 if __name__ == "__main__":
     analyze_pas()
