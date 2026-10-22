@@ -5,6 +5,11 @@ __pycache__/
 
 **/data/
 
+labs/lab03/data/*.sqlite3
+labs/lab03/data/*.sqlite3-*
+labs/lab03/data/*.db
+labs/lab03/data/*.db-*
+
 # C extensions
 *.so
 

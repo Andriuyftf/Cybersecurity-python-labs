@@ -46,12 +46,7 @@ class User:
         if not self.__password_hash:
             return False
 
-        candidate_hash = hashlib.pbkdf2_hmac(
-            "sha256",
-            password.encode("utf-8"),
-            self.__password_salt,
-            ITTERATIONS,
-        )
+        candidate_hash = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), self.__password_salt,ITTERATIONS,)
         return hmac.compare_digest(self.__password_hash, candidate_hash)
 
     def deactivate(self) -> None:

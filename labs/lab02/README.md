@@ -41,7 +41,7 @@ python -m labs.lab02.main analyze --scan-dir labs/lab02/data/data_v13/scan --pat
 python -m labs.lab02.main analyze --scan-dir labs/lab02/data/data_v13/scan --patterns cards --mask --out-json labs/lab02/cards_report.json
 
 
-Пошук лише email:
+Приклад пошуку лише email:
 
 python -m labs.lab02.main analyze --scan-dir labs/lab02/data/data_v13/scan --patterns emails --mask --out-json labs/lab02/emails_report.json
 
