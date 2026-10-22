@@ -1,0 +1,4 @@
+UNIT = "score"
+THRESHOLD = 7.0
+MIN_VALUE = 0.0
+MAX_VALUE = 10.0
