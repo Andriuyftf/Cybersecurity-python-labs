@@ -46,7 +46,7 @@ def main():
             ).fetchone()[0]
 
             if categories_count or records_count:
-                print("Початкові дані додано: 3 категорії та 8 записів.")
+                print("База вже містить дані. Початкове заповнення пропущено.")
                 return 0
 
             seed_path = BASE_DIR / "data" / "seed.json"
