@@ -60,8 +60,9 @@ def list_records(
 )
 
 def add_records_many(
-    data: list[RecordCreate] = Body(min_length=1, max_length=100),
+    data: list[RecordCreate] = Body(min_length=1, max_length=100),  # noqa: B008
 ) -> list[dict]:
+    
     """Перевірити та додати весь пакет записів однією транзакцією."""
     try:
         return repository.create_records_many([item.model_dump() for item in data])
