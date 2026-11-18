@@ -38,6 +38,7 @@ def list_records(
     limit: int = Query(default=20, ge=1, le=100, description="Кількість результатів"),
     offset: int = Query(default=0, ge=0, description="Кількість пропущених записів"),
 ) -> list[dict]:
+    
     """Повернути відфільтровані записи за зростанням id."""
     return repository.get_records(
         category_id=category_id,
