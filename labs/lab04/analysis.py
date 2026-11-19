@@ -51,7 +51,6 @@ def _select_metric(cve: dict) -> dict | None:
     return entries[0]
 
 def extract_record(payload: object, cve_id: str) -> dict | None:
-    """Повернути fields для звіту й cvss_data вибраної оцінки або None."""
     if not isinstance(payload, dict):
         raise DataError("Відповідь NVD має бути об'єктом.")
 
@@ -97,7 +96,6 @@ def extract_record(payload: object, cve_id: str) -> dict | None:
     return record
 
 def build_report(record: dict | None, cve_id: str, variant: int) -> dict:
-    """Застосувати правило варіанта 13 і сформувати JSON-сумісний звіт."""
     if type(variant) is not int or variant != VARIANT:
         raise DataError(f"Для цієї роботи потрібен варіант {VARIANT}.")
 

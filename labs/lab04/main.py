@@ -9,13 +9,12 @@ from shared.student import VARIANT_NUMBER
 
 
 def load_response(path: Path) -> object:
-    """Прочитати локальну JSON-відповідь у кодуванні UTF-8."""
     return json.loads(path.read_text(encoding="utf-8"))
 
 
 def main(argv: list[str] | None = None) -> int:
     """Обробити аргументи, сформувати звіт і повернути код завершення."""
-    parser = argparse.ArgumentParser(description="Перегляд запису про CVE")
+    parser = argparse.ArgumentParser()
     parser.add_argument("--cve", required=True)
     parser.add_argument("--input", type=Path)
     args = parser.parse_args(argv)
