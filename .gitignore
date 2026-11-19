@@ -4,6 +4,9 @@ __pycache__/
 *$py.class
 
 **/data/
+!/labs/lab04/data/
+/labs/lab04/data/*
+!/labs/lab04/data/nvd_sample.json
 
 labs/lab03/data/*.sqlite3
 labs/lab03/data/*.sqlite3-*
