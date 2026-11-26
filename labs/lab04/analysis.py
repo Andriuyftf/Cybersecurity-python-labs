@@ -2,7 +2,7 @@ VARIANT = 13
 
 
 class DataError(ValueError):
-    """Дані відповіді не відповідають вимогам лабораторної."""
+    """Дані відповіді не відповідають вимогам"""
 
 
 def _optional_text(data: dict, key: str) -> str | None:

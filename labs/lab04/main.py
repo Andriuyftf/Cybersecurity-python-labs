@@ -13,7 +13,6 @@ def load_response(path: Path) -> object:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Обробити аргументи, сформувати звіт і повернути код завершення."""
     parser = argparse.ArgumentParser()
     parser.add_argument("--cve", required=True)
     parser.add_argument("--input", type=Path)
